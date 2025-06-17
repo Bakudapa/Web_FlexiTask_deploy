@@ -63,7 +63,7 @@ Route::post('/firestore/set-user/{uid}', [FirestoreController::class, 'setUser']
 Route::get('/firestore/get-user/{uid}', [FirestoreController::class, 'getUser']);
 Route::delete('/firestore/delete-user/{uid}', [FirestoreController::class, 'deleteUser']);
 
-Route::post('/api/groq-chat', [GroqChatController::class, 'ask']);
+
 
 Route::get('/test-groq', function () {
     return response()->json(['reply' => 'Groq API test OK']);

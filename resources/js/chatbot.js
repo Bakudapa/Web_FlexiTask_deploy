@@ -110,23 +110,19 @@ async function sendMessage() {
     messages.push({ role: "user", content: inputText });
 
     try {
-        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        const response = await fetch("http://127.0.0.1:8000/api/groq-chat", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer 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",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "llama3-70b-8192",
-                messages: [
-                    { role: "system", content: "Kamu adalah asisten pribadi pengguna terkait manajemen tugas." },
-                    ...messages
-                ]
+                message: inputText
             })
         });
 
+
         const data = await response.json();
-        const reply = data?.choices?.[0]?.message?.content;
+        const reply = data?.reply;
 
         if (reply) {
             messages.push({ role: "assistant", content: reply });
